@@ -116,7 +116,7 @@ istream &operator>>(istream &istr, TSet &s) // ввод
 	char ch;
 	do {
 		istr >> ch;
-	} while (ch != '{');
+	} while (ch != ' {');
 	do {
 		istr >> tmp;
 		s.InsElem(tmp);
