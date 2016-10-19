@@ -250,7 +250,7 @@ istream &operator>>(istream &istr, TBitField &bf) // ввод
 
 ostream &operator<<(ostream &ostr, const TBitField &bf) // вывод
 {
-	int len = bf.GetLength();
+	/*int len = bf.GetLength();
 	int i = 0;
 	char ch = ' ';
 	ostr << "{ ";
@@ -262,5 +262,14 @@ ostream &operator<<(ostream &ostr, const TBitField &bf) // вывод
 		}
 		}
 	ostr << "} ";
+	return ostr;*/// вывод чисел как в tset
+	int len = bf.GetLength();
+	for (int i = 0; i < len; ++i)
+	{
+		if (bf.GetBit(i))
+			ostr << '1';
+		else
+			ostr << '0';
+	}
 	return ostr;
 }
