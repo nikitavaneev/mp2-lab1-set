@@ -24,7 +24,7 @@ TBitField::TBitField(int len)
 				
 }
 	else
-        throw 1;
+		throw std::logic_error("bad Length");
 }
 
 TBitField::TBitField(const TBitField &bf) // конструктор копирования
@@ -74,7 +74,7 @@ void TBitField::SetBit(const int n) // установить бит
 		pMem[GetMemIndex(n)] |= GetMemMask(n);
 	}
 	else
-		throw 1;
+		throw std::logic_error("bad position");
 }
 
 void TBitField::ClrBit(const int n) // очистить бит
@@ -84,7 +84,7 @@ void TBitField::ClrBit(const int n) // очистить бит
 		pMem[GetMemIndex(n)] &= ~GetMemMask(n);
 	}
 	else
-		throw 1;
+		throw std::logic_error("bad position");
 }
 
 
@@ -95,7 +95,7 @@ int TBitField::GetBit(const int n) const // получить значение б
 		return pMem[GetMemIndex(n)] & GetMemMask(n);
 	}
 	else
-		throw 1;
+		throw std::logic_error("bad position");
 }
 
 // битовые операции
@@ -250,7 +250,7 @@ istream &operator>>(istream &istr, TBitField &bf) // ввод
 
 ostream &operator<<(ostream &ostr, const TBitField &bf) // вывод
 {
-	int len = bf.GetLength();
+	/*int len = bf.GetLength();
 	int i = 0;
 	char ch = ' ';
 	ostr << "{ ";
@@ -262,5 +262,14 @@ ostream &operator<<(ostream &ostr, const TBitField &bf) // вывод
 		}
 		}
 	ostr << "} ";
+	return ostr;*/// вывод чисел как в tset
+	int len = bf.GetLength();
+	for (int i = 0; i < len; ++i)
+	{
+		if (bf.GetBit(i))
+			ostr << '1';
+		else
+			ostr << '0';
+	}
 	return ostr;
 }

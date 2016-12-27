@@ -81,7 +81,7 @@ TSet TSet::operator+(const int Elem) // объединение с элемент
 		return a;
 	}
 	else
-		throw 1;
+		throw std::logic_error("bad large");
 }
 
 TSet TSet::operator-(const int Elem) // разность с элементом
@@ -93,7 +93,7 @@ TSet TSet::operator-(const int Elem) // разность с элементом
 		return a;
 	}
 	else 
-		throw 1;
+		throw std::logic_error("bad large");
 }
 
 TSet TSet::operator*(const TSet &s) // пересечение
@@ -116,13 +116,13 @@ istream &operator>>(istream &istr, TSet &s) // ввод
 	char ch;
 	do {
 		istr >> ch;
-	} while (ch != '{');
+	} while (ch != ' {');
 	do {
 		istr >> tmp;
 		s.InsElem(tmp);
 		do {
 			istr >> ch;
-		} while (ch != ' ' && ch != '}');
+		} while (ch != ',' && ch != '}');
 	} while (ch != '}');
 	return istr;
 }
